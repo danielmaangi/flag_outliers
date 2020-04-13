@@ -1,0 +1,51 @@
+---
+title: "Data visualization for to flag outliers in continous variables using Tukey fences"
+output: html_notebook
+---
+
+
+Before fitting a statistical model to a dataset, checking for outliers is paramount. Existence of outliers can negtively affect the accuracy of the model
+
+Recall the following defintions:
+Q1 = lower quartile
+Q2 = Middle quartile = Median
+Q3 = Upper quartile
+
+IQR = Q3 - Q1
+
+The Tukey fences identifies a possible outlier x as any data point that is:
+below Q1 - 1.5*IQR or
+above Q3 + 1.5*IQR
+
+ggplot2 geom_boxplot function has this calculation included. Consider the mtcars dataset available in R.
+
+Load Required Libraries
+```{r Libraries}
+library(tidyverse)
+```
+
+Consider the mtcars dataset
+Data Structure
+```{r Data}
+glimpse(mtcars)
+```
+
+Draw a boxplot and highlight in red the possible outliers
+```{r}
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(
+    fill = "grey",
+    outlier.colour = "red")
+```
+
+
+
+
+
+
+
+
+
+
+
+
